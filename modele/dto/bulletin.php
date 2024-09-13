@@ -17,7 +17,7 @@ class Bulletin{
         $this->mois = $mois;
         $this->annee = $annee;
         $this->bulletinPDF = $bulletinPDF;
-        $this->idContrat$idContrat = $idContrat;
+        $this->idContrat = $idContrat;
     }
 
 
@@ -54,7 +54,7 @@ class Bulletin{
     }
 
     public function setPDFBulletin(string $newBulleinPDF) : void{
-        $this->bulleinPDF = $newBulleinPDF;
+        $this->bulletinPDF = $newBulleinPDF;
     }
 
     //Getter et Setter pour l'id du contrat
@@ -65,7 +65,5 @@ class Bulletin{
     public function setIdContrat(string $newIdContrat) : void{
         $this->idContrat = $newIdContrat;
     }
-
-
 }
 ?>
