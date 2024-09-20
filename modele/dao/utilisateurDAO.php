@@ -1,5 +1,4 @@
 <?php
-require_once 'modele/dao/dBConnex.php';
 class UtilisateurDAO {
     public static function verification(Utilisateur $utilisateur) {
         $login = $utilisateur->getLogin();
