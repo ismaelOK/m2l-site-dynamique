@@ -1,5 +1,8 @@
 <?php
+require_once 'modele/trait/hydrate.php';
 class Utilisateur{
+    use Hydrate;
+    private string $idUser;
     private string $nom;
     private string $prenom;
     private string $login;
@@ -9,7 +12,8 @@ class Utilisateur{
     private string $idClub;
     private string $idFonct;
 
-    public function __construct(string $nom, string $prenom, string $login, string $mdp, string $typeUser, string $idLigue, string $idClub, string $idFonct){
+    public function __construct(string $idUser, string $nom, string $prenom, string $login, string $mdp, string $typeUser, string $idLigue, string $idClub, string $idFonct){
+        $this->idUser = $idUser;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->login = $login;
@@ -18,6 +22,15 @@ class Utilisateur{
         $this->idLigue = $idLigue;
         $this->idClub = $idClub;
         $this->idFonct = $idFonct;
+    }
+
+    //Getter et Setter de l'IdUser
+    public function getIdUser(): string{
+        return $this->idUser;
+    }
+
+    public function setIdUser(string $newIdUser): void{
+        $this->idUser = $newIdUser;
     }
 
     //Getter et Setter du nom

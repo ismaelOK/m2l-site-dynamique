@@ -91,3 +91,4 @@ function getBulletin() : void{
         die($e->getMessage());
     }
 }
+?>

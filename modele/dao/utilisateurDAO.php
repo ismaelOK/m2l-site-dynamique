@@ -1,20 +1,27 @@
 <?php
-class UtilisateurDAO{
-    public static function verification(Utilisateur $utilisateur){
-        
+require_once 'modele/dao/dBConnex.php';
+class UtilisateurDAO {
+    public static function verification(Utilisateur $utilisateur) {
         $login = $utilisateur->getLogin();
         $mdp = $utilisateur->getMDP();
-        
 
-        $requetePrepa = DBConnex::getInstance()->prepare("select login from utilisateur where login = :login and  mdp = md5(:mdp)");
-        $requetePrepa->bindParam( ":login", $login);
-        $requetePrepa->bindParam( ":mdp" ,  $mdp);
-        
+        // Requête pour récupérer l'utilisateur correspondant au login
+        $requetePrepa = DBConnex::getInstance()->prepare("
+            SELECT login, typeUser, idUser, nom , prenom
+            FROM utilisateur
+            WHERE login = :login
+            AND mdp = md5(:mdp)
+        ");
+
+        // Liaison des paramètres
+        $requetePrepa->bindParam(":login", $login);
+        $requetePrepa->bindParam(":mdp", $mdp);
+
+        // Exécuter la requête
         $requetePrepa->execute();
-        
-        return $requetePrepa->fetch();
-       
-    }
 
+        // Renvoyer les informations de l'utilisateur trouvé, s'il existe
+        return $requetePrepa->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
