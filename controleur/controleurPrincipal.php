@@ -52,7 +52,6 @@ if(!$_SESSION['identification']){
 }
 else{
 
-	$m2lMP->ajouterComposant($m2lMP->creerItemLien("connexion", "Se déconnecter"));
 	if($_SESSION['identification']['typeUser'] === "Salarie"){
 	
 		$m2lMP->ajouterComposant($m2lMP->creerItemLien("salarie", "Salarie"));
@@ -69,6 +68,7 @@ else{
 	else{
 		$m2lMP->ajouterComposant($m2lMP->creerItemLien("secretariat", "Secrétaire"));
 	}
+	$m2lMP->ajouterComposant($m2lMP->creerItemLien("connexion", "Déconnecter"));
 	
 
 }

@@ -2,11 +2,11 @@
 class ContratDAO{
     public static function getContratsBySalarieId($idSalarie){
         //Requête SQL pour récupérer les contrats d'un salarié
-        $sql = "SELECT *
+        $sql = "SELECT contrat.idContrat, contrat.dateDebut, contrat.dateFin, contrat.typeContrat, contrat.nbHeures
         FROM contrat, utilisateur
         WHERE contrat.idUser = utilisateur.idUser
-        AND typeUser = 'Salarie'
-        AND idUser = :idUser";
+        AND utilisateur.typeUser = 'Salarie'
+        AND utilisateur.idUser = :idUser";
         
         try{
             //Préparation de la requête/

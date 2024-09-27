@@ -14,7 +14,7 @@ html, body {
 .conteneur{
 	margin: 0px;
 	padding: 0px;
-	width: 100%
+	width: 100%;
 	font-size: 0px;
 }
 
@@ -42,7 +42,18 @@ main {
  	margin-top: 200px;
 }
 
+.bulletin{
+	font-size: 50px;
+	margin-top: 210px;
+	margin-left:500px;
+}
 
+.contrat{
+	font-size: 50px;
+	margin-top: 150px;
+	margin-left:80px;
+	margin-bottom: 80px;
+}
 
 
 /**********************************************************************/
@@ -159,7 +170,7 @@ nav.menuPrincipal ul li.actif {
 .texteAccueil h1{
 	padding-top: 20px;
 	padding-bottom: 20px;
-	text-algn: center;
+	text-align: center;
 	text-align: center;
 }
 

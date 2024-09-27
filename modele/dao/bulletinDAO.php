@@ -1,6 +1,6 @@
 <?php
-use dbConnex;
-class bulletinDAO{
+
+class BulletinDAO{
     //AJOUT DU BULLETIN
     public static function addBulletin($idBulletin, $mois, $annee, $bulletinPDF, $idContrat) : void{
         //Instanciation de la connexion
@@ -93,14 +93,15 @@ class bulletinDAO{
     }
 
     public static function getBulletinsBySalarieId($idSalarie){
-        $sql = "SELECT *
-        FROM bulletin, contrat, utilisateur
+        $sql = "SELECT bulletin.idContrat, bulletin.mois, bulletin.annee, bulletin.bulletinPDF
+        FROM bulletin, contrat
         WHERE bulletin.idContrat = contrat.idContrat
-        AND contrat.idContrat IN (SELECT * FROM contrat, utilisateur WHERE contrat.idUser = utilisateur.idUser AND typeUser = 'Salarie' AND idUser = :idUser)";
+        AND contrat.idUser = :idUser
+        ORDER BY contrat.idContrat, bulletin.annee, bulletin.mois";
 
         try{
             //Préparation de la requête
-            $stmt = dbConnex::getInstance()->prepare($sql);
+            $stmt = DBConnex::getInstance()->prepare($sql);
 
             //Mise en paramètre
             $stmt->bindParam(":idUser", $idSalarie);
