@@ -1,23 +1,15 @@
 <?php
-if (isset($_SESSION['identification']) && $_SESSION['identification']['typeUser'] === 'Salarie'){
-    //Récupération de l'ID du salarié à partir de la session
-    $idSalarie = $_SESSION['identification']['idUser'];
+if(isset($_SESSION['identification']) && $_SESSION['identification']['typeUser'] === 'Responsable RH'){
+    $idRH = $_SESSION['identification']['typeUser'];
 }
 
 //Récupération des données
-$dataBulletin = BulletinDAO::getBulletinsBySalarieId($idSalarie);
-$dataContrat = ContratDAO::getContratsBySalarieId($idSalarie);
-$dataUser = UtilisateurDAO::getUserDetailsById($idSalarie);
+$dataBulletin = BulletinDAO::getBulletin();
+$dataContrat = ContratDAO::getContrat();
+$dataUser = UtilisateurDAO::getUserDetailsById($idRH);
 
 //Création du tableau concernant les bulletins
-
-$dataBulletin2 = [];
-foreach($dataBulletin as $bulletin){
-    $bulletin[] = "<a href='bulletinPDF/" . $idSalarie ."/" . $bulletin['bulletinPDF'] . "'>". $bulletin['bulletinPDF']."</a>";
-    $dataBulletin2[] = $bulletin;
-}
-
-$tabSalarie = new Tableau("tabBulletin", $dataBulletin2);
+$tabSalarie = new Tableau("tabBulletin", $dataBulletin);
 
 $tabSalarie->setTitreTab("Bulletins");
 
@@ -25,10 +17,10 @@ $tabTitreBulletin[] = "Contrat";
 $tabTitreBulletin[] = "Mois";
 $tabTitreBulletin[] = "Annee";
 $tabTitreBulletin[] = "Bulletin en PDF";
-$tabTitreBulletin[] = "Lien PDF";
 
 $tabSalarie->setTitreCol($tabTitreBulletin);
 $tabSalarie->setTaille(3);
+
 
 //Création du tableau concernant les contrats
 $tabContrat = new Tableau("tabContrat", $dataContrat);
@@ -55,5 +47,5 @@ $tabTitreUser[] = "Type de Personnel";
 $tabUser->setTitreCol($tabTitreUser);
 $tabUser->setTaille(3);
 
-include_once 'vue/salarie/vueSalarie.php';
+include_once 'vue/rh/vueRH.php';
 ?>

@@ -52,10 +52,12 @@ if(!$_SESSION['identification']){
 }
 else{
 
+	//OK!
 	if($_SESSION['identification']['typeUser'] === "Salarie"){
 	
 		$m2lMP->ajouterComposant($m2lMP->creerItemLien("salarie", "Salarie"));
 	}
+	//OK!
 	elseif ($_SESSION['identification']['typeUser'] === "Benevole"){
 		$m2lMP->ajouterComposant($m2lMP->creerItemLien("benevole", "Benevole"));
 	}

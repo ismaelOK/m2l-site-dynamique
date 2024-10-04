@@ -11,7 +11,9 @@
         <div class="contrat">
             <?php $tabContrat->afficherTableau(); ?>
         </div>
-        <div class="user">
+        <p></p>
+        <p></p>
+        <div class="user" style="font-size:50px; margin-top:150px; margin-left:500px; margin-bottom:80px;">
             <?php $tabUser->afficherTableau(); ?>
         </div>
     </main>

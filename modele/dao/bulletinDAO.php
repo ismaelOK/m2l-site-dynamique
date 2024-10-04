@@ -76,7 +76,7 @@ class BulletinDAO{
     }
 
     //AFFICHAGE DES BULLETINS
-    public static function getBulletin() : void{
+    public static function getBulletin() : array{
         //Instanciation de la connexion
         $db = DBConnex::getInstance();
 
@@ -85,7 +85,7 @@ class BulletinDAO{
 
             $stmt = $db->prepare($sql);
 
-            $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         catch(PDOException $e){
             die($e->getMessage());
