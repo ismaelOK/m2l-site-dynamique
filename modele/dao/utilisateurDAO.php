@@ -39,5 +39,30 @@ class UtilisateurDAO {
             die($e->getMessage());
         }
     }
+
+    public static function getAllSalarie(){
+        $db = DBConnex::getInstance();
+        $result = [];
+
+        try{
+            $sql = "SELECT * FROM utilisateur WHERE typeUser = 'Salarie'";
+
+            $stmt = $db->prepare($sql);
+
+            $stmt->execute();
+
+            $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if(!empty($list)){
+                foreach($list as $salarie){
+                    //
+                }
+            }
+            return $result;
+        }
+        catch(PDOException $e){
+            die($e->getMessage());
+        }
+    }
 }
 ?>

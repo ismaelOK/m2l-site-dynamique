@@ -42,20 +42,30 @@ main {
  	margin-top: 200px;
 }
 
-.bulletin{
+.formSalarie{
 	font-size: 50px;
-	margin-top: 210px;
-	margin-left:400px;
+	margin-left:650px;
+	margin-top:250px;
 }
 
-.contrat{
+#tabContrat{
 	font-size: 50px;
-	margin-top: 150px;
-	margin-left:80px;
+	margin-left:25px;
+	margin-top:80px;
+}
+
+#tabBulletin{
+	font-size: 50px;
+	margin-left:350px;
+	margin-top:80px;
+}
+
+#tabUser{
+	font-size: 50px;
+	margin-left:650px;
 	margin-bottom: 80px;
+	margin-top: 80px;
 }
-
-
 /**********************************************************************/
 /*styles pour la zone gauche de la zone centrale de la page           */
 /**********************************************************************/
