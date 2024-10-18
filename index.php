@@ -1,5 +1,7 @@
-<?php require_once 'lib/autoLoader.php';
- session_start();?>
+<?php
+	require_once 'lib/autoLoader.php';
+ 	session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>

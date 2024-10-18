@@ -1,5 +1,5 @@
 <?php
-class dispatcher{
+class Dispatcher{
 
 	public static function dispatch($unMenuP){
 		$unMenuP = "controleur" . ucfirst($unMenuP) ;
