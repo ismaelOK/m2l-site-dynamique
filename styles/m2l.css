@@ -14,7 +14,7 @@ html, body {
 .conteneur{
 	margin: 0px;
 	padding: 0px;
-	width: 100%
+	width: 100%;
 	font-size: 0px;
 }
 
@@ -42,7 +42,30 @@ main {
  	margin-top: 200px;
 }
 
+.formSalarie{
+	font-size: 50px;
+	margin-left:350px;
+	margin-top:250px;
+}
 
+#tabContrat{
+	font-size: 50px;
+	margin-left:25px;
+	margin-top:80px;
+}
+
+#tabBulletin{
+	font-size: 50px;
+	margin-left:350px;
+	margin-top:80px;
+}
+
+#tabUser{
+	font-size: 50px;
+	margin-left:650px;
+	margin-bottom: 80px;
+	margin-top: 80px;
+}
 
 
 /**********************************************************************/
@@ -159,7 +182,7 @@ nav.menuPrincipal ul li.actif {
 .texteAccueil h1{
 	padding-top: 20px;
 	padding-bottom: 20px;
-	text-algn: center;
+	text-align: center;
 	text-align: center;
 }
 
