@@ -2,22 +2,33 @@
 class ContratDAO{
     public static function getContratsBySalarieId($idSalarie){
         //Requête SQL pour récupérer les contrats d'un salarié
-        $sql = "SELECT contrat.idContrat, contrat.dateDebut, contrat.dateFin, contrat.typeContrat, contrat.nbHeures
-        FROM contrat, utilisateur
-        WHERE contrat.idUser = utilisateur.idUser
-        AND utilisateur.typeUser = 'Salarie'
-        AND utilisateur.idUser = :idUser";
+        $db = DBConnex::getInstance();
+        $result = [];
         
         try{
+            $sql = "SELECT contrat.idContrat, contrat.dateDebut, contrat.dateFin, contrat.typeContrat, contrat.nbHeures
+            FROM contrat, utilisateur
+            WHERE contrat.idUser = utilisateur.idUser
+            AND utilisateur.typeUser = 'Salarie'
+            AND utilisateur.idUser = :idUser";
             //Préparation de la requête/
-            $stmt = dbConnex::getInstance()->prepare($sql);
+            $stmt = $db->prepare($sql);
 
             //Mise en paramètre
             $stmt->bindParam(":idUser", $idSalarie);
 
             $stmt->execute();
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!empty($list)){
+                foreach($list as $contrat){
+                    $unContrat = new Contrat(null, null, null, null, null, null);
+                    $unContrat->hydrate($contrat);
+                    $result[] = $unContrat;
+                }
+            }
+
+            return $result;
         }
         catch(PDOException $e){
             die($e->getMessage());
@@ -103,6 +114,7 @@ class ContratDAO{
 
     public static function getContrat(): array{
         $db = DBConnex::getInstance();
+        $result = [];
         try{
             $sql = "SELECT * FROM contrat";
 
@@ -110,7 +122,21 @@ class ContratDAO{
             
             $stmt->execute();
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!empty($list)){
+                foreach($list as $contrat){
+                    $unContrat = new Contrat(null, null, null, null, null, null);
+                    $unContrat->setIdContrat($contrat['idContrat']);
+                    $unContrat->setDateDebut($contrat['dateDebut']);
+                    $unContrat->setDateFin($contrat['dateFin']);
+                    $unContrat->setTypeContrat($contrat['typeContrat']);
+                    $unContrat->setNbHeures($contrat['nbHeures']);
+                    $unContrat->setIdUser($contrat['idUser']);
+                    $result[] = $unContrat;
+                }
+            }
+
+            return $result;
         }
         catch(PDOException $e){
             die($e->getMessage());

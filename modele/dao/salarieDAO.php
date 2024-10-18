@@ -1,21 +1,31 @@
 <?php
 class SalarieDAO{
-    public static function getAllSalarie() : array{
+    public static function getAllSalarie() : array {
         $db = DBConnex::getInstance();
-
-        try{
+    
+        try {
             $sql = "SELECT idUser, nom, prenom FROM utilisateur WHERE typeUser = 'Salarie'";
-
+    
             $stmt = $db->prepare($sql);
-
             $stmt->execute();
-
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            $salarieArray = [];
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            // Convertir chaque enregistrement en objet Salarie
+            foreach ($results as $row) {
+                $salarie = new Salarie($row['idUser'], $row['nom'], $row['prenom']);
+                $salarieArray[] = $salarie;
+            }
+    
+            return $salarieArray;
         }
-        catch(PDOException $e){
+        catch(PDOException $e) {
             die($e->getMessage());
         }
     }
+    
+    
 
     public static function createSalarie(string $id, string $nom, string $prenom, string $login, string $mdp, string $typeUser = "Salarie", string $idLigue = null, string $idClub = null, string $idFonct = "1"): bool{
         $db = DBConnex::getInstance();
@@ -62,6 +72,8 @@ class SalarieDAO{
             $sql = "UPDATE utilisateur
             SET nom = :nom,
             login = :login,
+            nom = :nom,
+            prenom = :nom,
             mdp = md5(:mdp),
             idLigue = :idLigue,
             idClub = :idClub,

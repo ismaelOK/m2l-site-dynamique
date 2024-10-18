@@ -1,14 +1,15 @@
 <?php
 
 class Contrat{
-    private string $idContrat;
-    private DateTime $dateDebut;
-    private DateTime $dateFin;
-    private string $typeContrat;
-    private float $nbHeures;
-    private string $idUser;
+    use Hydrate;
+    private ?string $idContrat;
+    private ?string $dateDebut;
+    private ?string $dateFin;
+    private ?string $typeContrat;
+    private ?float $nbHeures;
+    private ?string $idUser;
 
-    public function __construct(string $idContrat, DateTime $dateDebut, DateTime $dateFin, string $typeContrat, float $nbHeures, string $idUser)
+    public function __construct(?string $idContrat, ?DateTime $dateDebut, ?DateTime $dateFin, ?string $typeContrat, ?float $nbHeures, ?string $idUser)
     {
         $this->idContrat = $idContrat;
         $this->dateDebut = $dateDebut;
@@ -27,19 +28,19 @@ class Contrat{
         $this->idContrat = $newIdContrat;
     }
 
-    public function getDateDebut(): DateTime{
+    public function getDateDebut(): ?string{
         return $this->dateDebut;
     }
 
-    public function setDateDebut(DateTime $newDateDebut): void{
+    public function setDateDebut(?string $newDateDebut): void{
         $this->dateDebut = $newDateDebut;
     }
 
-    public function getDateFin(): DateTime{
+    public function getDateFin(): ?string{
         return $this->dateFin;
     }
 
-    public function setDateFin(DateTime $newDateFin): void{
+    public function setDateFin(?string $newDateFin): void{
         $this->dateFin = $newDateFin;
     }
 
