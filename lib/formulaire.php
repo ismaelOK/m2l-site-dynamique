@@ -102,7 +102,6 @@ class Formulaire{
 	}
 	
 	
-	
 	public function creerFormulaire(){
 		$this->formulaireToPrint = "<form method = '" .  $this->method . "' ";
 		$this->formulaireToPrint .= "action = '" .  $this->action . "' ";

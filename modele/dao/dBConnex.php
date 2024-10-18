@@ -18,6 +18,6 @@ class DBConnex extends PDO{
             die("Impossible de se connecter. " );
         }
     }
-    
 
 }
+?>

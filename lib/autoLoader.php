@@ -4,6 +4,7 @@ spl_autoload_register('Autoloader::autoloadDao');
 spl_autoload_register('Autoloader::autoloadLib');
 spl_autoload_register('Autoloader::autoloadTrait');
 
+
 class Autoloader{
     
     static function autoloadDto($class){

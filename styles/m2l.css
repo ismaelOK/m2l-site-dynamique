@@ -42,15 +42,30 @@ main {
  	margin-top: 200px;
 }
 
-/* Ensure to add this in your existing CSS file */
-
-.logo {
-    display: inline-block;
-    max-height: 150px; /* or any height that fits your design */
-    width: auto; /* Maintain aspect ratio */
-    margin: 20px auto; /* Center the image with margin */
+.formSalarie{
+	font-size: 50px;
+	margin-left:350px;
+	margin-top:250px;
 }
 
+#tabContrat{
+	font-size: 50px;
+	margin-left:25px;
+	margin-top:80px;
+}
+
+#tabBulletin{
+	font-size: 50px;
+	margin-left:350px;
+	margin-top:80px;
+}
+
+#tabUser{
+	font-size: 50px;
+	margin-left:650px;
+	margin-bottom: 80px;
+	margin-top: 80px;
+}
 
 
 /**********************************************************************/
@@ -62,8 +77,6 @@ main {
 	width: 20%;
 	vertical-align: top;
 	font-size: 15px;
-	/*border: 2px solid black;
-	height: 100%;*/
 }
 
 /**********************************************************************/
@@ -74,7 +87,6 @@ main {
 	width: 80%;	
 	font-size: 15px;
 	vertical-align: top;
-	/*border: 2px solid black;*/
 }
 
 
