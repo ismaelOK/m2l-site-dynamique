@@ -1,4 +1,6 @@
 <?php
+
+
 trait Hydrate{
     function hydrate(array $donnees)
     {

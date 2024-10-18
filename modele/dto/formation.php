@@ -1,32 +1,42 @@
 <?php
 
 class Formation{
-
+    private string $idForma;
     private string $intitule;
     private string $descriptif;
     private string $dureeMinutes;
     private string $dateOuvertureInscri;
     private string $dateClotureInscri;
+    private string $effectifActuel;
     private int $effectifMax;
 
      // Constructor
      public function __construct(
+        string $idForma,
         string $intitule, 
         string $descriptif, 
-        float $dureeMinutes, 
+        string $dureeMinutes, 
         string $dateOuvertureInscri, 
         string $dateClotureInscri, 
-        int $effectifMax
+        string $effectifActuel,
+        string $effectifMax
     ) {
+        $this->idForma = $idForma;
         $this->intitule = $intitule;
         $this->descriptif = $descriptif;
         $this->dureeMinutes = $dureeMinutes;
         $this->dateOuvertureInscri = $dateOuvertureInscri;
         $this->dateClotureInscri = $dateClotureInscri;
+        $this->effectifActuel = $effectifActuel;
         $this->effectifMax = $effectifMax;
     }
 
     // Getters
+    public function getIdForma(): string {
+        return $this->idForma;
+    }
+
+
     public function getIntitule(): string {
         return $this->intitule;
     }
@@ -35,7 +45,7 @@ class Formation{
         return $this->descriptif;
     }
 
-    public function getDureeMinutes(): float {
+    public function getDureeMinutes(): string {
         return $this->dureeMinutes;
     }
 
@@ -47,11 +57,19 @@ class Formation{
         return $this->dateClotureInscri;
     }
 
-    public function getEffectifMax(): int {
+    public function getEffectifActuel(): string {
+        return $this->effectifActuel;
+    }
+
+    public function getEffectifMax(): string {
         return $this->effectifMax;
     }
 
     // Setters
+    public function setIdForma(string $idForma): void {
+        $this->idForma = $idForma;
+    }
+
     public function setIntitule(string $intitule): void {
         $this->intitule = $intitule;
     }
@@ -70,6 +88,10 @@ class Formation{
 
     public function setDateClotureInscri(string $dateClotureInscri): void {
         $this->dateClotureInscri = $dateClotureInscri;
+    }
+
+    public function setEffectifActuel(int $effectifMax): void {
+        $this->effectifActuel = $effectifActuel;
     }
 
     public function setEffectifMax(int $effectifMax): void {

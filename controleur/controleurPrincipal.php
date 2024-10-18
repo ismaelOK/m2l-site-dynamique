@@ -14,17 +14,18 @@ else
 $messageErreurConnexion = null;
 
 if (isset($_POST['submitConnex'])) {
-	// Récupérer le login et le mdp fournis par l'utilisateur
-	$login = $_POST['login'];
+	
+	$login = $_POST['login']; // Récupérer le login et le mdp fournis par l'utilisateur
 	$mdp = $_POST['mdp'];
+	//var_dump($login, $mdp);
 
 	// Créer une instance d'Utilisateur pour vérifier les informations
-	$utilisateur = new Utilisateur($login, $mdp, '', '', '', '');
+	$utilisateur = new Utilisateur('', '', '', $login, $mdp, '', '', '', '');
+	//var_dump($utilisateur);
 
 	// Utilisation de la classe UtilisateurDAO pour vérifier l'utilisateur
 	$_SESSION['identification'] = UtilisateurDAO::verification($utilisateur);
-
-
+	//var_dump($_SESSION['identification']);
 
 	// Si l'utilisateur n'est pas trouvé dans la base de données
 	if (!$_SESSION['identification']) {
@@ -35,9 +36,7 @@ if (isset($_POST['submitConnex'])) {
 	else{
 		//On se dirige vers la page selon le type de l'utilisateur.
 		$_SESSION['m2lMP'] = $_SESSION['identification']['typeUser'] ;
-			
 	}
-
 	
 }
 
@@ -56,16 +55,20 @@ if(!$_SESSION['identification']){
 }
 else{
 
-	$m2lMP->ajouterComposant($m2lMP->creerItemLien("connexion", "Se déconnecter"));
+	
 	if($_SESSION['identification']['typeUser'] === "Salarie"){
 	
-		$m2lMP->ajouterComposant($m2lMP->creerItemLien("salarie", "Salarie"));
+		$m2lMP->ajouterComposant($m2lMP->creerItemLien("salarie", "Salarié"));
+		$m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "Formations"));
 	}
 	elseif ($_SESSION['identification']['typeUser'] === "Benevole"){
-		$m2lMP->ajouterComposant($m2lMP->creerItemLien("benevole", "Benevole"));
+		$m2lMP->ajouterComposant($m2lMP->creerItemLien("benevole", "Bénévole"));
+		$m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "Formations"));
 	}
 	elseif ($_SESSION['identification']['typeUser'] === "Responsable de formation"){
-		$m2lMP->ajouterComposant($m2lMP->creerItemLien("responsableFormation", "Responsable de formations"));
+		$m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "Formations"));
+
+		//enlever les items pas necessaires?? 
 	}
 	elseif($_SESSION['identification']['typeUser'] === "Responsable RH"){
 		$m2lMP->ajouterComposant($m2lMP->creerItemLien("rh", "Responsable RH"));
@@ -73,6 +76,7 @@ else{
 	else{
 		$m2lMP->ajouterComposant($m2lMP->creerItemLien("secretariat", "Secrétaire"));
 	}
+	$m2lMP->ajouterComposant($m2lMP->creerItemLien("connexion", "Se déconnecter"));
 	
 
 }

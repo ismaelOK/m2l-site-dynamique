@@ -1,4 +1,7 @@
 <?php
+
+require_once 'modele/trait/hydrate.php';
+
 class Utilisateur{
     use Hydrate;
     private string $idUser;

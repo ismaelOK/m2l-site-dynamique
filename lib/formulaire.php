@@ -34,11 +34,19 @@ class Formulaire{
 		$composant = "<label>" . $unLabel . "</label>";
 		return $composant;
 	}
+
+	public function creerLabelClasse($unLabel, $uneClasse){
+		$composant = "<label class='" . $uneClasse ."'>" . $unLabel . "</label>";
+		return $composant;
+	}
 	
 	public function creerMessage($unMessage){
 		$composant = "<label class='message'>" . $unMessage . "</label>";
 		return $composant;
 	}
+
+	
+
 	
 	
 	public function creerInputTexte($unNom, $unId, $uneValue , $required , $placeholder , $pattern){
