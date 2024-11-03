@@ -37,6 +37,23 @@ class UtilisateurDAO {
     
         return $requetePrepa->fetchColumn() > 0; 
     }
+
+    public static function getUserDetailsById($id){
+        $sql = "SELECT nom, prenom, typeUser FROM utilisateur WHERE idUser = :idUser";
+
+        try{
+            $prepared = DBConnex::getInstance()->prepare($sql);
+
+            $prepared->bindParam(":idUser", $id);
+
+            $prepared->execute();
+
+            return $prepared->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e){
+            die($e->getMessage());
+        }
+    }
 }
 
 ?>
