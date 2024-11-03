@@ -49,7 +49,7 @@ class Formulaire{
 		if (!empty($placeholder)){
 			$composant .= "placeholder = '" . $placeholder . "' ";
 		}
-		if ( $required = 1){
+		if ( $required == 1){
 			$composant .= "required ";
 		}
 		if (!empty($pattern)){
@@ -95,9 +95,9 @@ class Formulaire{
 		return $composant;
 	}
 
-	public function creerInputImage($unNom, $unId, $uneSource){
-		$composant = "<input type = 'image' name = '" . $unNom . "' id = '" . $unId . "' ";
-		$composant .= "src = '" . $uneSource . "'/> ";
+	public function creerInputImage($unNom, $unId, $uneSource) {
+		$composant = "<input type='image' name='" . htmlspecialchars($unNom) . "' id='" . htmlspecialchars($unId) . "' ";
+		$composant .= "src='" . htmlspecialchars($uneSource) . "' alt='" . htmlspecialchars($unNom) . "' />"; // Ajout de l'attribut alt pour l'accessibilité
 		return $composant;
 	}
 	

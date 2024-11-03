@@ -2,12 +2,13 @@
 spl_autoload_register('Autoloader::autoloadDto');
 spl_autoload_register('Autoloader::autoloadDao');
 spl_autoload_register('Autoloader::autoloadLib');
+spl_autoload_register('Autoloader::autoloadTrait');
 
 
 class Autoloader{
     
     static function autoloadDto($class){
-        $file = 'modeles/dto/' . lcfirst($class) . '.php';
+        $file = 'modele/dto/' . lcfirst($class) . '.php';
         if(is_file($file)&& is_readable($file)){
             require $file;
         }
@@ -23,7 +24,15 @@ class Autoloader{
     }
     
     static function autoloadDao($class){
-        $file = 'modeles/dao/' . lcfirst($class) . '.php';
+        $file = 'modele/dao/' . lcfirst($class) . '.php';
+        if(is_file($file)&& is_readable($file)){
+            require $file;
+        }
+        
+    }
+
+    static function autoloadTrait($class){
+        $file = 'modele/traits/' . lcfirst($class) . '.php';
         if(is_file($file)&& is_readable($file)){
             require $file;
         }
