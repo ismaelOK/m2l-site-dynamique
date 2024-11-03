@@ -37,6 +37,7 @@ class Menu{
 		$composant[0] = $unLien ;
 		$composant[1] = $uneValeur ;
 		return $composant;
+		return "<a href='index.php?$unLien' class='menu-item'>$uneValeur</a>";
 	}
 
 	/**

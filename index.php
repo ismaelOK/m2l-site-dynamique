@@ -1,6 +1,7 @@
-<?php require_once 'lib/autoLoader.php';
-
- session_start();?>
+<?php
+	require_once 'lib/autoLoader.php';
+ 	session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -13,7 +14,6 @@
 	</head>
 	<body >
 		<?php
-			require_once 'modele/dto/utilisateur.php';
 			require_once 'controleur/controleurPrincipal.php';	
 		?>
 

@@ -32,7 +32,7 @@ class Autoloader{
     }
 
     static function autoloadTrait($class){
-        $file = 'modele/dtraitao/' . lcfirst($class) . '.php';
+        $file = 'modele/traits/' . lcfirst($class) . '.php';
         if(is_file($file)&& is_readable($file)){
             require $file;
         }
