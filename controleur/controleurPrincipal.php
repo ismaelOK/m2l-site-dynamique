@@ -68,7 +68,7 @@ else{
 	elseif ($_SESSION['identification']['typeUser'] === "Responsable de formation"){
 		$m2lMP->ajouterComposant($m2lMP->creerItemLien("formations", "Formations"));
 
-		//enlever les items pas necessaires?? 
+		 
 	}
 	elseif($_SESSION['identification']['typeUser'] === "Responsable RH"){
 		$m2lMP->ajouterComposant($m2lMP->creerItemLien("rh", "Responsable RH"));

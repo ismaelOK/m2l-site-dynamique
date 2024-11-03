@@ -94,8 +94,8 @@ class FormationDAO{
     ) {
         
         $requetePrepa = DBConnex::getInstance()->prepare("
-            INSERT INTO formation (intitule, descriptif, duree, dateOuvertInscriptions, dateClotureInscriptions, effectifMax)
-            VALUES (:intitule, :descriptif, :duree, :dateOuvertInscriptions, :dateClotureInscriptions, :effectifMax)
+            INSERT INTO formation (idForma, intitule, descriptif, duree, dateOuvertInscriptions, dateClotureInscriptions, effectifMax)
+            VALUES (NULL, :intitule, :descriptif, :duree, :dateOuvertInscriptions, :dateClotureInscriptions, :effectifMax)
         ");
     
         
@@ -153,10 +153,6 @@ class FormationDAO{
         WHERE idForma = :idFormation
         ");
     
-    
-    
-    
-        // Bind parameters
         $requetePrepa->bindParam(':intitule', $intitule);
         $requetePrepa->bindParam(':descriptif', $descriptif);
         $requetePrepa->bindParam(':duree', $duree);
@@ -165,14 +161,29 @@ class FormationDAO{
         $requetePrepa->bindParam(':effectifMax', $effectifMax);
         $requetePrepa->bindParam(':idFormation', $idFormation);
     
-        // Execute the statement and check for success
         if ($requetePrepa->execute()) {
-            return true; // Successfully updated
+            return true; 
         } else {
-            return false; // Update failed
+            return false; 
         }
     }
 
+    public static function isFormationAvailable($formation) {
+        
+        $isFormationFull = $formation->getEffectifActuel() == $formation->getEffectifMax();
+        if ($isFormationFull) {
+            return false; 
+        }
+        
+        
+        $today = date("Y-m-d");
+        if ($today > $formation->getDateClotureInscri()) {
+            return false; 
+        }
+        
+        
+        return true;
+    }
 
 }
 

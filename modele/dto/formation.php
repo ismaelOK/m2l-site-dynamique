@@ -7,7 +7,7 @@ class Formation{
     private string $dureeMinutes;
     private string $dateOuvertureInscri;
     private string $dateClotureInscri;
-    private string $effectifActuel;
+    private int $effectifActuel;
     private int $effectifMax;
 
      // Constructor
@@ -18,8 +18,8 @@ class Formation{
         string $dureeMinutes, 
         string $dateOuvertureInscri, 
         string $dateClotureInscri, 
-        string $effectifActuel,
-        string $effectifMax
+        int $effectifActuel,
+        int $effectifMax
     ) {
         $this->idForma = $idForma;
         $this->intitule = $intitule;
@@ -57,11 +57,11 @@ class Formation{
         return $this->dateClotureInscri;
     }
 
-    public function getEffectifActuel(): string {
+    public function getEffectifActuel(): int {
         return $this->effectifActuel;
     }
 
-    public function getEffectifMax(): string {
+    public function getEffectifMax(): int {
         return $this->effectifMax;
     }
 

@@ -22,5 +22,21 @@ class UtilisateurDAO {
         // Renvoyer les informations de l'utilisateur trouvé, s'il existe
         return $requetePrepa->fetch(PDO::FETCH_ASSOC);
     }
+
+
+    public static function hasPendingOrAcceptedDemand($idUtilisateur, $idForma) {
+        $requetePrepa = DBConnex::getInstance()->prepare("
+            SELECT COUNT(*) FROM inscrit_a 
+            WHERE idUser = :idUser 
+            AND idForma = :idForma 
+            AND etat IN (0, 2)  
+        ");
+        $requetePrepa->bindParam(':idUser', $idUtilisateur);
+        $requetePrepa->bindParam(':idForma', $idForma);
+        $requetePrepa->execute();
+    
+        return $requetePrepa->fetchColumn() > 0; 
+    }
 }
+
 ?>

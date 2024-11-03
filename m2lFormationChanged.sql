@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 26-09-2024 a las 20:45:52
+-- Tiempo de generación: 03-11-2024 a las 19:56:42
 -- Versión del servidor: 5.7.40
 -- Versión de PHP: 8.0.26
 
@@ -2506,7 +2506,7 @@ INSERT INTO `fonction` (`idFonct`, `libelle`) VALUES
 
 DROP TABLE IF EXISTS `formation`;
 CREATE TABLE IF NOT EXISTS `formation` (
-  `idForma` varchar(5) COLLATE latin1_general_ci NOT NULL,
+  `idForma` int(11) NOT NULL AUTO_INCREMENT,
   `intitule` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `descriptif` varchar(50) COLLATE latin1_general_ci NOT NULL,
   `duree` decimal(10,2) DEFAULT NULL,
@@ -2515,16 +2515,15 @@ CREATE TABLE IF NOT EXISTS `formation` (
   `effectifMax` int(11) DEFAULT NULL,
   `effectifActuel` int(11) DEFAULT '0',
   PRIMARY KEY (`idForma`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Volcado de datos para la tabla `formation`
 --
 
 INSERT INTO `formation` (`idForma`, `intitule`, `descriptif`, `duree`, `dateOuvertInscriptions`, `dateClotureInscriptions`, `effectifMax`, `effectifActuel`) VALUES
-('1', 'Cours de premiers secours', 'nana ni nana na', '240.00', '2024-09-28', '2024-09-29', 11, 1),
-('2', 'Gestion du budget de l\'équipe', 'description budget :)', '800.00', '2024-10-16', '2024-10-31', 2, 0),
-('3', 'Je ne sais pas', 'Descriptif de je ne sais pas', '30.00', '2024-09-28', '2024-10-26', 50, 0);
+(7, 'Cocina para conci', 'paella', '30.00', '2025-05-29', '2025-08-29', 20, 2),
+(8, 'miranda', 'miranedo', '600.00', '2025-05-29', '2025-08-29', 20, 1);
 
 -- --------------------------------------------------------
 
@@ -2534,43 +2533,37 @@ INSERT INTO `formation` (`idForma`, `intitule`, `descriptif`, `duree`, `dateOuve
 
 DROP TABLE IF EXISTS `inscrit_a`;
 CREATE TABLE IF NOT EXISTS `inscrit_a` (
+  `codeDemande` int(11) NOT NULL AUTO_INCREMENT,
   `idUser` varchar(5) COLLATE latin1_general_ci NOT NULL,
-  `idForma` varchar(5) COLLATE latin1_general_ci NOT NULL,
-  `Etats` varchar(1) COLLATE latin1_general_ci DEFAULT NULL,
-  PRIMARY KEY (`idUser`,`idForma`),
-  KEY `idForma` (`idForma`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+  `idForma` int(5) NOT NULL,
+  `etat` varchar(1) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`codeDemande`),
+  KEY `idForma` (`idForma`),
+  KEY `fk_user` (`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Volcado de datos para la tabla `inscrit_a`
 --
 
-INSERT INTO `inscrit_a` (`idUser`, `idForma`, `Etats`) VALUES
-('1', '1', '1');
+INSERT INTO `inscrit_a` (`codeDemande`, `idUser`, `idForma`, `etat`) VALUES
+(5, '1', 7, '2'),
+(6, '1', 8, '1'),
+(7, '2', 7, '2'),
+(8, '2', 8, '2');
 
 --
 -- Disparadores `inscrit_a`
 --
-DROP TRIGGER IF EXISTS `update_effectifActuel_after_insert`;
-DELIMITER $$
-CREATE TRIGGER `update_effectifActuel_after_insert` AFTER INSERT ON `inscrit_a` FOR EACH ROW BEGIN
-    IF NEW.Etats = '1' THEN
-        UPDATE formation
-        SET effectifActuel = effectifActuel + 1
-        WHERE idForma = NEW.idForma;
-    END IF;
-END
-$$
-DELIMITER ;
 DROP TRIGGER IF EXISTS `update_effectifActuel_after_update`;
 DELIMITER $$
 CREATE TRIGGER `update_effectifActuel_after_update` AFTER UPDATE ON `inscrit_a` FOR EACH ROW BEGIN
-    IF OLD.Etats != NEW.Etats THEN
-        IF NEW.Etats = '1' THEN
+    IF OLD.etat != NEW.etat THEN
+        IF NEW.etat = '1' THEN
             UPDATE formation
             SET effectifActuel = effectifActuel + 1
             WHERE idForma = NEW.idForma;
-        ELSEIF OLD.Etats = '1' THEN
+        ELSEIF OLD.etat = '1' THEN
             UPDATE formation
             SET effectifActuel = effectifActuel - 1
             WHERE idForma = OLD.idForma;
@@ -2677,8 +2670,8 @@ ALTER TABLE `contrat`
 -- Filtros para la tabla `inscrit_a`
 --
 ALTER TABLE `inscrit_a`
-  ADD CONSTRAINT `inscrit_a_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `utilisateur` (`idUser`),
-  ADD CONSTRAINT `inscrit_a_ibfk_2` FOREIGN KEY (`idForma`) REFERENCES `formation` (`idForma`);
+  ADD CONSTRAINT `fk_formation` FOREIGN KEY (`idForma`) REFERENCES `formation` (`idForma`),
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`idUser`) REFERENCES `utilisateur` (`idUser`);
 
 --
 -- Filtros para la tabla `utilisateur`
