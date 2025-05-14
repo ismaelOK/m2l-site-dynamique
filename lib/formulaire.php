@@ -108,6 +108,11 @@ class Formulaire{
 		$composant .= "src='" . htmlspecialchars($uneSource) . "' alt='" . htmlspecialchars($unNom) . "' />"; // Ajout de l'attribut alt pour l'accessibilité
 		return $composant;
 	}
+
+	//crée une valuer cachée
+	public function creerInputHidden($name, $value) {
+        return '<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '">';
+    }
 	
 	
 	public function creerFormulaire(){

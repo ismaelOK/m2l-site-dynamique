@@ -320,36 +320,9 @@ foreach ($formations as $formation) {
 
 if($isResponsableFormation)
 {
-    $formCreationFormation = new Formulaire('POST', '', 'formation' , 'formation');
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerLabelClasse('Ajouter une formation', 'intitule'));
-    $formCreationFormation->ajouterComposantTab();
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerLabel('Intitulé: '));
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerInputTexte('intitule', 'intitule', '', 1, '', '' ));
-    $formCreationFormation->ajouterComposantTab();
+    
 
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerLabel('Descriptif: '));
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerInputTexte('descriptif', 'descriptif', '', 1, '', '' ));
-    $formCreationFormation->ajouterComposantTab();
-
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerLabel('Durée (en minutes): '));
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerInputTexte('duree', 'duree', '', 1, '', '' ));
-    $formCreationFormation->ajouterComposantTab();
-
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerLabel('Ouverture: '));
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerInputTexte('ouverture', 'ouverture', '', 1, 'AAAA-mm-jj', '' ));
-    $formCreationFormation->ajouterComposantTab();
-
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerLabel('Clôture: '));
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerInputTexte('cloture', 'cloture', '', 1, 'AAAA-mm-jj', '' ));
-    $formCreationFormation->ajouterComposantTab();
-
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerLabel('Places disponibles: '));
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerInputTexte('effectifMax', 'effecticMax', '', 1, '', '' ));
-    $formCreationFormation->ajouterComposantTab();
-    $formCreationFormation->ajouterComposantLigne($formCreationFormation->creerInputSubmit('btnCreationFormation', 'btnCreationFormation', 'Créer formation'));
-    $formCreationFormation->ajouterComposantTab();
-
-    $formulaireCreationInscription = $formCreationFormation->creerFormulaire();
+    $formulaireCreationInscription = createFormationForm();
 
 
 
